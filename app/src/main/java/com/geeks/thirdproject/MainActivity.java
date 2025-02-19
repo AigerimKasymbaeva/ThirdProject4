@@ -3,62 +3,88 @@ package com.geeks.thirdproject;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView result;
+    private TextView textView;
     private int firstOperand, secondOperand;
     private boolean isOperationClick;
+    private String currentOperation;
 
-    @Override
+    // 12 + 21 = 33
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        result = findViewById(R.id.result);
+        /* ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        }); */
+
+        textView = findViewById(R.id.text_view);
+
     }
 
     public void onNumberClick(View view) {
-        String textButton = ((MaterialButton) view).getText().toString();
+        String textButton = ((MaterialButton)view).getText().toString();
 
         if (textButton.equals("AC")) {
-            result.setText("0");
-        } else if (result.getText().toString().equals("0") || isOperationClick) {
-            result.setText(textButton);
+            textView.setText("0");
+            firstOperand = 0;
+        } else if (textView.getText().toString().equals("0") || isOperationClick) {
+            textView.setText(textButton);
         } else {
-            result.append(textButton);
+            textView.append(textButton);
         }
         isOperationClick = false;
     }
 
     public void onOperationClick(View view) {
-        if (view.getId() == R.id.btn_minus) {
-            firstOperand = Integer.parseInt(result.getText().toString());
-
-        } else if (view.getId() == R.id.btn_plus) {
-            firstOperand = Integer.parseInt(result.getText().toString());
-        }else if (view.getId() == R.id.btn_division) {
-            firstOperand = Integer.parseInt(result.getText().toString());
+        if (view.getId() == R.id.btn_plus) {
+            firstOperand = Integer.parseInt(textView.getText().toString());
+            currentOperation = "+";
+        } else if (view.getId() == R.id.btn_minus) {
+            firstOperand = Integer.parseInt(textView.getText().toString());
+            currentOperation = "-";
         } else if (view.getId() == R.id.btn_multiplication) {
-            firstOperand = Integer.parseInt(result.getText().toString());
+            firstOperand = Integer.parseInt(textView.getText().toString());
+            currentOperation = "*";
+        } else if (view.getId() == R.id.btn_division) {
+            firstOperand = Integer.parseInt(textView.getText().toString());
+            currentOperation = "/";
         } else if (view.getId() == R.id.btn_equal) {
-            secondOperand = Integer.parseInt(result.getText().toString());
+            secondOperand = Integer.parseInt(textView.getText().toString());
 
-        int minus = firstOperand - secondOperand;
-        int plus = firstOperand + secondOperand;
-        int multiplication = firstOperand * secondOperand;
-        int division = firstOperand / secondOperand;
+            int result = 0;
 
-        result.setText(String.valueOf(minus));
-        result.setText(String.valueOf(plus));
-        result.setText(String.valueOf(multiplication));
-        result.setText(String.valueOf(division));
+            if (currentOperation.equals("+")) {
+                result = firstOperand + secondOperand;
+            } else if (currentOperation.equals("-")) {
+                result = firstOperand - secondOperand;
+            } else if (currentOperation.equals("*")) {
+                result = firstOperand * secondOperand;
+            } else if (currentOperation.equals("/")) {
+                result = firstOperand / secondOperand;
+            }
+
+            textView.setText(String.valueOf(result));
+        }
+        isOperationClick = true;
     }
-    isOperationClick = true;
-}
+
 }
