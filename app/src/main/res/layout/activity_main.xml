@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/text_view"
+                android:id="@+id/result"
                 android:textColor="@color/white"
                 android:textSize="80sp"
                 android:maxLines="1"
