@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ThirdProject</string>
+
+    <string-array name="Types">
+        <item>Type1</item>
+        <item>Type2</item>
+        <item>Type3</item>
+    </string-array>
+
+    <string name="hint_category">Category</string>
+    <string name="hint_type">Type: </string>
+    <string name="hint_next">NEXT</string>
 </resources>

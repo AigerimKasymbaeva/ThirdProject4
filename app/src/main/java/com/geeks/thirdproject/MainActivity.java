@@ -1,5 +1,6 @@
 package com.geeks.thirdproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private int firstOperand, secondOperand;
     private boolean isOperationClick;
     private String currentOperation;
+    private MaterialButton btnShare;
 
     // 12 + 21 = 33
 
@@ -37,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
         }); */
 
         textView = findViewById(R.id.text_view);
+        btnShare = findViewById(R.id.btn_share);
+
+        btnShare.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            intent.putExtra("result", textView.getText().toString());
+            startActivity(intent);
+        });
 
     }
 
@@ -46,12 +55,14 @@ public class MainActivity extends AppCompatActivity {
         if (textButton.equals("AC")) {
             textView.setText("0");
             firstOperand = 0;
+            btnShare.setVisibility(View.GONE); // Скрываем кнопку
         } else if (textView.getText().toString().equals("0") || isOperationClick) {
             textView.setText(textButton);
         } else {
             textView.append(textButton);
         }
         isOperationClick = false;
+        btnShare.setVisibility(View.GONE); // Скрываем кнопку при нажатии на числа
     }
 
     public void onOperationClick(View view) {
@@ -83,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             textView.setText(String.valueOf(result));
+            btnShare.setVisibility(View.VISIBLE); // Показываем кнопку
         }
         isOperationClick = true;
     }

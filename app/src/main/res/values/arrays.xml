@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="def_values">
+        <item>250</item>
+        <item>750</item>
+    </array>
+
+    <array name="def_values2">
+        <item>250</item>
+        <item>750</item>
+    </array>
+</resources>

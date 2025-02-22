@@ -35,6 +35,22 @@
 
         </HorizontalScrollView>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_share"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            app:cornerRadius="10dp"
+            android:elevation="20dp"
+            android:drawableEnd="@drawable/baseline_assistant_24"
+            android:backgroundTint="@color/lightViolet"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:text="Share"
+            android:visibility="gone"
+            android:layout_gravity="end|top"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"/>
+
     </FrameLayout>
 
     <LinearLayout
